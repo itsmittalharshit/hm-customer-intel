@@ -12,6 +12,7 @@ dependencies = [
     "pandera>=0.20",
     "matplotlib>=3.8",
     "kaggle>=1.6",
+    "scikit-learn>=1.9.1",
 ]
 
 [dependency-groups]

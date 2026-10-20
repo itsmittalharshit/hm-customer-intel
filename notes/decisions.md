@@ -11,3 +11,6 @@
 - Customers repeat across snapshots -> bootstrap by customer, not by row.
 - 40% of snapshot rows are single-visit customers (no gap features) -> explicit missing indicator in linear models.
 - Univariate check passed: churners have higher recency, lower frequency/spend, shorter tenure.
+- LogReg val PR-AUC 0.718 vs recency rule 0.599 vs floor 0.453; lift@10% 1.82.
+- Train/val PR-AUC equal, but val log-loss worse (0.533 -> 0.591): base-rate drift (0.416 -> 0.453), not overfitting -> recalibrate on val.
+- PRE-CREATE club status is the strongest profile risk factor; fn/active coefficients unreliable (collinear).
