@@ -1,0 +1,2 @@
+- Leading-zero finding: Article IDs are stored as 10-character strings and retain their leading zero across all 105,542 articles in the catalog.
+- Proposed churn window: 18 weeks (based on the 90th-percentile inter-purchase gap of 17.7 weeks, rounded to whole weeks).
