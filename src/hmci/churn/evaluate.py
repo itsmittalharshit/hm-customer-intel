@@ -77,6 +77,13 @@ def ece(y, p, bins: int = 10) -> float:
     return float(sum((idx == b).mean() * abs(p[idx == b].mean() - y[idx == b].mean())
                      for b in range(bins) if (idx == b).any()))
 
+def load_val(cfg: Config, split: str = "val") -> pd.DataFrame:
+    cols = sorted(set(baselines.FEATURES) | set(lgbm.FEATURES) | {"customer_key", "churned"})
+    df = (pl.scan_parquet(cfg.paths.processed / "churn_features.parquet")
+          .filter(pl.col("split") == split).select(cols).collect().to_pandas())
+    for c in lgbm.CAT_COLS:
+        df[c] = df[c].astype("category")   # LightGBM re-maps to its training categories
+    return df
 
 def main() -> None:
     cfg = load_config()

@@ -27,3 +27,6 @@
 - SHAP vs gain: freq 48%->28%, tenure 7%->14%, recency 3%->8%. Gain importance misled; report SHAP.
 - PRE-CREATE club status: +0.95 mean log-odds (~2x churn odds), ~4% of customers -> memo recommendation.
 - Age is predictive (3.5% SHAP): flag fairness audit of offer rates by age band before any deployment.
+- TEST (2020-05-14, scored once): LGBM PR-AUC 0.714, lift@10% 2.05; +0.0134 over LogReg, 95% CI [0.0126, 0.0141].
+- Val-fitted isotonic over-predicts on test (0.481 vs 0.411; ECE 0.070 vs raw 0.019): recalibrate on latest labelled data in production.
+- EV policy realised +1,187 vs expected +1,790 (34% overestimate from calibration drift); still beats all alternatives.
