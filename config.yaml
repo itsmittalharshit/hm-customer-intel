@@ -30,3 +30,11 @@ churn_business:
   offer_cost_share: 0.05   # offer cost as a share of mean 26-week customer spend
   save_rate_grid: [0.05, 0.10, 0.20, 0.30]
   offer_cost_grid: [0.02, 0.05, 0.10, 0.20]
+
+ab_test:
+  baseline_retention: 0.60     # retention among EV-targeted customers on the test snapshot (1 - 0.397)
+  alpha: 0.05
+  power: 0.80
+  mde_grid: [0.01, 0.02, 0.03, 0.05]
+  chosen_mde: 0.02             # smallest uplift worth detecting (2 percentage points)
+  simulated_true_uplift: 0.03  # used ONLY to demonstrate the analysis on simulated data

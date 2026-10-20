@@ -39,3 +39,8 @@
 - Funnel (first year): 2nd purchase 61.8%, 2nd->3rd 69.1%, 3rd->5+ 51.6%. Biggest leak = 1st->2nd. Median 52 days to 2nd purchase.
 - Spring cohorts more valuable (12m LTV 0.343 Mar-19 vs 0.251 Jul-19).
 - Entry product group: repeat range 57–64%, weak effect.
+- RETRACTED: "lockdown cohort less loyal". 90-day repeat Mar-20 32.6% vs Apr-20 32.2%, p=0.37. Month-3 retention was confounded by calendar timing.
+- Effect sizes: club ACTIVE vs PRE-CREATE h=0.55 (largest), newsletter h=0.25, channel h=0.16, entry group V=0.02 (negligible).
+- Online-first spend: mean +20% but P(A>B)=0.52, driven by a high-spending minority.
+- Club/newsletter flags recorded at end of data -> association, not causation; recommend a sign-up-prompt experiment.
+- A/B decision rule changed (design stage, simulated data only): ship if CI excludes 0. "Estimate >= MDE" halves power at the MDE.
