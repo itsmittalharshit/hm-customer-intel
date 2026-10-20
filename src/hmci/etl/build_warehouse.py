@@ -50,13 +50,15 @@ def main() -> None:
     cfg = load_config()
     cfg.paths.make_dirs()
     t0 = time.perf_counter()
+    # full rebuild: start from an empty file so freed space doesn't accumulate
+    cfg.paths.warehouse.unlink(missing_ok=True)
+    cfg.paths.warehouse.with_suffix(".duckdb.wal").unlink(missing_ok=True)
     with duckdb.connect(str(cfg.paths.warehouse)) as con:
         build(con, str(cfg.paths.processed))
         run_checks(con)
         print(con.execute("SELECT * FROM rfm(DATE '2020-06-01', 182) LIMIT 3").pl())
     size_mb = cfg.paths.warehouse.stat().st_size / 1e6
     print(f"warehouse {size_mb:.0f} MB, built in {time.perf_counter() - t0:.0f}s")
-
 
 if __name__ == "__main__":
     main()
