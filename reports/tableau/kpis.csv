@@ -1,0 +1,6 @@
+kpi,value,format
+Active customers (last 26 weeks),744034.0,number
+New customers who buy again within 12 months,0.618,percent
+12-month value of a new customer (scaled),0.2969038689155049,decimal
+Online share of revenue (last 52 weeks),0.7709252892988294,percent
+Revenue from Champions (22% of customers),0.5771551611931417,percent

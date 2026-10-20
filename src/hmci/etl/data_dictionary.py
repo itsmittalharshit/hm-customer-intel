@@ -16,7 +16,7 @@ DESCRIPTIONS = {
     "date_key": "Calendar date (DATE); the key of dim_date.",
     "customer_key": "int32 surrogate key, assigned by sorting the original customer_id.",
     "article_key": "int32 surrogate key, assigned by sorting the original 10-digit article_id.",
-    "channel_key": "1 or 2; 2 is likely online.",
+    "channel_key": "1 or 2; 2 is online.",
     "price": "Scaled price per unit (not real currency).",
     "units": "Number of identical raw rows collapsed into this row.",
     "revenue": "price * units, in scaled units.",

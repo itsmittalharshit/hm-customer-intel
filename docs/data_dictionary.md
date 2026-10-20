@@ -30,7 +30,7 @@ Two sales channels; meaning inferred, not documented.
 
 | Column | Type | Description |
 | --- | --- | --- |
-| `channel_key` | TINYINT | 1 or 2; 2 is likely online. |
+| `channel_key` | TINYINT | 1 or 2; 2 is online. |
 | `channel_name` | VARCHAR |  |
 
 ## `dim_customer` (1,371,980 rows)
@@ -74,10 +74,48 @@ One row per (day, customer, article, price, channel); identical raw rows collaps
 | `date_key` | DATE | Calendar date (DATE); the key of dim_date. |
 | `customer_key` | INTEGER | int32 surrogate key, assigned by sorting the original customer_id. |
 | `article_key` | INTEGER | int32 surrogate key, assigned by sorting the original 10-digit article_id. |
-| `channel_key` | TINYINT | 1 or 2; 2 is likely online. |
+| `channel_key` | TINYINT | 1 or 2; 2 is online. |
 | `price` | DOUBLE | Scaled price per unit (not real currency). |
 | `units` | SMALLINT | Number of identical raw rows collapsed into this row. |
 | `revenue` | DOUBLE | price * units, in scaled units. |
+
+## `v_cohort_retention` (644 rows)
+
+
+
+| Column | Type | Description |
+| --- | --- | --- |
+| `cohort_month` | DATE |  |
+| `first_channel` | TINYINT |  |
+| `activity_month` | DATE |  |
+| `months_since_first` | BIGINT |  |
+| `active_customers` | BIGINT |  |
+| `cohort_size` | BIGINT |  |
+| `left_censored` | BOOLEAN |  |
+| `partial_month` | BOOLEAN |  |
+
+## `v_cohort_revenue` (644 rows)
+
+
+
+| Column | Type | Description |
+| --- | --- | --- |
+| `cohort_month` | DATE |  |
+| `first_channel` | TINYINT |  |
+| `months_since_first` | BIGINT |  |
+| `revenue` | DOUBLE | price * units, in scaled units. |
+
+## `v_customer_channel_mix` (1,362,281 rows)
+
+
+
+| Column | Type | Description |
+| --- | --- | --- |
+| `customer_key` | INTEGER | int32 surrogate key, assigned by sorting the original customer_id. |
+| `channel_mix` | VARCHAR |  |
+| `purchase_days` | BIGINT |  |
+| `spend` | DOUBLE |  |
+| `units` | BIGINT | Number of identical raw rows collapsed into this row. |
 
 ## `v_customer_cohort` (1,362,281 rows)
 
@@ -89,6 +127,37 @@ First purchase date, cohort month and first channel per customer; cohorts before
 | `first_purchase` | DATE |  |
 | `cohort_month` | DATE |  |
 | `first_channel` | TINYINT |  |
+
+## `v_customer_journey` (1,362,281 rows)
+
+
+
+| Column | Type | Description |
+| --- | --- | --- |
+| `customer_key` | INTEGER | int32 surrogate key, assigned by sorting the original customer_id. |
+| `cohort_month` | DATE |  |
+| `first_channel` | TINYINT |  |
+| `first_purchase` | DATE |  |
+| `first_group` | VARCHAR |  |
+| `visits_365d` | BIGINT |  |
+| `second_purchase` | DATE |  |
+| `third_purchase` | DATE |  |
+
+## `v_rfm_segments` (992,532 rows)
+
+
+
+| Column | Type | Description |
+| --- | --- | --- |
+| `customer_key` | INTEGER | int32 surrogate key, assigned by sorting the original customer_id. |
+| `recency_days` | BIGINT |  |
+| `frequency_days` | BIGINT |  |
+| `monetary` | DOUBLE |  |
+| `units` | BIGINT | Number of identical raw rows collapsed into this row. |
+| `r_score` | INTEGER |  |
+| `f_score` | INTEGER |  |
+| `m_score` | INTEGER |  |
+| `segment` | VARCHAR |  |
 
 ## `v_weekly_category_demand` (2,226 rows)
 

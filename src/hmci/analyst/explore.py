@@ -102,7 +102,7 @@ def main() -> None:
     fig.savefig(fig_dir / "cohort_retention_heatmap.png", dpi=150)
 
     # ---------- 2. first channel: the April 2020 hypothesis ----------
-    print("\nNew customers and share whose FIRST purchase was channel 2 (likely online):")
+    print("\nNew customers and share whose FIRST purchase was channel 2 (online):")
     print(first_channel.filter(pl.col("cohort_month") >= FIRST_CLEAN_COHORT)
           .with_columns(pl.col("first_online_share").round(3)))
 
@@ -115,7 +115,7 @@ def main() -> None:
         .sort("first_channel")
         .select("first_channel", *[str(m) for m in range(1, 7)])
     )
-    print("\nRetention months 1-6 by first-purchase channel (1 = likely store, 2 = likely online):")
+    print("\nRetention months 1-6 by first-purchase channel (1 = store, 2 = online):")
     print(by_channel)
 
     # ---------- 3. channel mix (beware: frequency confounds it) ----------

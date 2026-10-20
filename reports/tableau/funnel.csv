@@ -1,0 +1,13 @@
+step,customers,share_of_new,step_conversion,segment,step_order
+1st purchase,292217,1.0,,all new customers,1
+2nd purchase,180669,0.618,0.618,all new customers,2
+3rd purchase,124830,0.427,0.691,all new customers,3
+5+ purchases (loyal),64357,0.22,0.516,all new customers,4
+1st purchase,89364,1.0,,store-first,1
+2nd purchase,59948,0.671,0.671,store-first,2
+3rd purchase,44911,0.503,0.749,store-first,3
+5+ purchases (loyal),25371,0.284,0.565,store-first,4
+1st purchase,202853,1.0,,online-first,1
+2nd purchase,120721,0.595,0.595,online-first,2
+3rd purchase,79919,0.394,0.662,online-first,3
+5+ purchases (loyal),38986,0.192,0.488,online-first,4

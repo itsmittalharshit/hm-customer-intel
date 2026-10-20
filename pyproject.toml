@@ -1,7 +1,7 @@
 [project]
 name = "hmci"
 version = "0.1.0"
-description = "E-Commerce Customer Intelligence Platform on the H&M dataset"
+description = "Customer Retention & Churn Intelligence Platform on the H&M dataset"
 requires-python = ">=3.11,<3.13"
 dependencies = [
     "polars>=1.0",

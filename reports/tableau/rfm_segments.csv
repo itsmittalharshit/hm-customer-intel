@@ -1,0 +1,13 @@
+segment,measure,share
+At risk,customers_share,0.03772372074653512
+Champions,customers_share,0.22209964011235908
+New / promising,customers_share,0.0991323201670072
+Hibernating,customers_share,0.31885420318941854
+Needs attention,customers_share,0.15845735956120305
+Loyal,customers_share,0.1637327562234769
+At risk,revenue_share,0.026797310656458944
+Champions,revenue_share,0.5771551611931417
+New / promising,revenue_share,0.032026171635731106
+Hibernating,revenue_share,0.09356922817162436
+Needs attention,revenue_share,0.075378928334356
+Loyal,revenue_share,0.19507320000868794
