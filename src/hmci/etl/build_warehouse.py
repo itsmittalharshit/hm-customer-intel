@@ -9,7 +9,7 @@ from hmci.common.config import ROOT, load_config
 from hmci.etl.build_parquet import EXPECTED_RAW_ROWS
 
 SQL_DIR = ROOT / "sql"
-SQL_FILES = ["schema.sql", "macros.sql", "views.sql"]   # order matters
+SQL_FILES = ["schema.sql", "macros.sql", "views.sql", "churn.sql"]
 
 EXPECTED_FACT_ROWS = 28_813_419
 

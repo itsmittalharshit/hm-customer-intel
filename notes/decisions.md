@@ -9,3 +9,5 @@
 - Churn base rate 0.40–0.45 across snapshots: random-model PR-AUC ≈ 0.41 on test; accuracy is not a useful headline metric.
 - Val label window overlaps the lockdown (churn 0.453 vs 0.41 elsewhere).
 - Customers repeat across snapshots -> bootstrap by customer, not by row.
+- 40% of snapshot rows are single-visit customers (no gap features) -> explicit missing indicator in linear models.
+- Univariate check passed: churners have higher recency, lower frequency/spend, shorter tenure.

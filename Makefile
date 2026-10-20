@@ -1,4 +1,4 @@
-.PHONY: setup test download etl warehouse data clean bench docs churn-base
+.PHONY: setup test download etl warehouse data clean bench docs churn-base churn-features
 
 warehouse:
 	uv run python -m hmci.etl.build_warehouse
@@ -6,6 +6,9 @@ warehouse:
 data: download etl warehouse
 
 churn-base:
+	uv run python -m hmci.churn.snapshots
+
+churn-features:
 	uv run python -m hmci.churn.snapshots
 
 bench:

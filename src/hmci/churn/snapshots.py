@@ -47,6 +47,9 @@ def assign_splits(dates: list[date], horizon_weeks: int, step_weeks: int) -> dic
     return splits
 
 
+PROFILE_COLS = "c.age, c.age_band, c.fn, c.active, c.club_member_status, c.fashion_news_frequency"
+
+
 def build_base(cfg: Config) -> pl.DataFrame:
     d = cfg.raw["data"]
     dates = snapshot_dates(cfg)
@@ -57,28 +60,38 @@ def build_base(cfg: Config) -> pl.DataFrame:
     frames = []
     with duckdb.connect(str(cfg.paths.warehouse), read_only=True) as con:
         for s in dates:
-            df = con.execute(
-                f"SELECT * FROM churn_labels(DATE '{s}', {lookback_days}, {horizon_days})"
-            ).pl()
+            df = con.execute(f"""
+                SELECT l.snapshot, l.customer_key, l.churned,
+                       l.frequency_days AS check_freq,
+                       f.* EXCLUDE (customer_key),
+                       {PROFILE_COLS}
+                FROM churn_labels(DATE '{s}', {lookback_days}, {horizon_days}) l
+                JOIN churn_features(DATE '{s}', {lookback_days}) f USING (customer_key)
+                JOIN dim_customer c USING (customer_key)
+            """).pl()
+            print(f"{s}  {df.height:>9,} rows")
             frames.append(df.with_columns(split=pl.lit(splits[s])))
-    return pl.concat(frames)
+
+    base = pl.concat(frames)
+    # the label population and the feature population must be the same customers
+    assert (base["check_freq"] == base["freq_26w"]).all(), "labels and features disagree"
+    return base.drop("check_freq")
 
 
 def main() -> None:
     cfg = load_config()
     base = build_base(cfg)
-    out = cfg.paths.processed / "churn_base.parquet"
+    out = cfg.paths.processed / "churn_features.parquet"
     base.write_parquet(out, compression="zstd")
 
-    summary = (
-        base.group_by("snapshot", "split")
-        .agg(customers=pl.len(), churn_rate=pl.col("churned").mean().round(3))
-        .sort("snapshot")
-    )
-    pl.Config.set_tbl_rows(30)
-    print(summary)
-    print(f"{base.height:,} rows -> {out.name}")
-
+    pl.Config.set_tbl_rows(40)
+    pl.Config.set_tbl_cols(12)
+    train = base.filter(pl.col("split") == "train")
+    print(train.group_by("churned").agg(
+        pl.col("recency_days", "freq_26w", "spend_26w", "gap_trend", "online_share", "tenure_days").mean()
+    ).sort("churned"))
+    print(base.null_count().transpose(include_header=True, column_names=["nulls"]).filter(pl.col("nulls") > 0))
+    print(f"{base.height:,} rows x {base.width} columns -> {out.name}")
 
 if __name__ == "__main__":
     main()
