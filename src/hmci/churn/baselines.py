@@ -1,6 +1,6 @@
 """Churn baselines: constant, recency rule, logistic regression. Scored on the validation snapshot."""
 from __future__ import annotations
-
+from hmci.churn.metrics import evaluate, write_markdown
 import time
 
 import joblib
@@ -54,32 +54,6 @@ def make_logreg() -> Pipeline:
     return Pipeline([("pre", pre), ("clf", LogisticRegression(C=1.0, max_iter=1000))])
 
 
-def lift_at(y: np.ndarray, score: np.ndarray, frac: float = 0.10) -> float:
-    """Churn rate among the top `frac` highest scores, divided by the overall churn rate."""
-    n = max(1, int(len(y) * frac))
-    top = np.argsort(-score)[:n]
-    return float(y[top].mean() / y.mean())
-
-
-def evaluate(name: str, y: np.ndarray, score: np.ndarray, is_prob: bool = True) -> dict:
-    out = {
-        "model": name,
-        "pr_auc": average_precision_score(y, score),
-        "roc_auc": roc_auc_score(y, score),
-        "lift_top10": lift_at(y, score),
-    }
-    if is_prob:  # log-loss and Brier only make sense for probabilities
-        out |= {"log_loss": log_loss(y, score), "brier": brier_score_loss(y, score)}
-    return out
-
-
-def write_markdown(table: pl.DataFrame, path) -> None:
-    cols = table.columns
-    lines = ["| " + " | ".join(cols) + " |", "| " + " | ".join("---" for _ in cols) + " |"]
-    for row in table.iter_rows():
-        lines.append("| " + " | ".join("" if v is None else str(v) for v in row) + " |")
-    path.write_text("# Churn baselines (validation snapshot)\n\n" + "\n".join(lines) + "\n")
-
 
 def main() -> None:
     cfg = load_config()
@@ -114,7 +88,7 @@ def main() -> None:
 
     (ROOT / "models").mkdir(exist_ok=True)
     joblib.dump(model, ROOT / "models" / "churn_logreg.joblib")
-    write_markdown(table, cfg.paths.reports / "churn_baselines.md")
+    write_markdown(table, cfg.paths.reports / "churn_baselines.md", "Churn baselines (validation snapshot)")
 
 
 if __name__ == "__main__":
