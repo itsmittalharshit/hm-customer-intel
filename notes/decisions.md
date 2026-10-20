@@ -14,3 +14,6 @@
 - LogReg val PR-AUC 0.718 vs recency rule 0.599 vs floor 0.453; lift@10% 1.82.
 - Train/val PR-AUC equal, but val log-loss worse (0.533 -> 0.591): base-rate drift (0.416 -> 0.453), not overfitting -> recalibrate on val.
 - PRE-CREATE club status is the strongest profile risk factor; fn/active coefficients unreliable (collinear).
+- LightGBM val PR-AUC 0.7288 vs LogReg 0.7183 (+0.0105); grid spread only 0.0003 -> features are the ceiling, not hyperparameters.
+- Chosen: leaves=127, min_child_samples=500 (best and fastest).
+- Gain importance understates recency (shares credit with correlated gap/frequency features) -> use SHAP for explanations.
