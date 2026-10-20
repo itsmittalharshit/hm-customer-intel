@@ -6,3 +6,6 @@
 - Cohorts before 2019-03 are left-censored (data starts 2018-09-20): Module 7 uses cohorts from 2019-03.
 - First and last weeks are partial: forecasting uses only weeks with 7 observed days.
 - April 2020 cohort spike (40.7k vs ~30k): hypothesis = lockdown shift to online; test with first_channel.
+- Churn base rate 0.40–0.45 across snapshots: random-model PR-AUC ≈ 0.41 on test; accuracy is not a useful headline metric.
+- Val label window overlaps the lockdown (churn 0.453 vs 0.41 elsewhere).
+- Customers repeat across snapshots -> bootstrap by customer, not by row.

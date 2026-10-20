@@ -1,9 +1,12 @@
-.PHONY: setup test download etl warehouse data clean bench docs
+.PHONY: setup test download etl warehouse data clean bench docs churn-base
 
 warehouse:
 	uv run python -m hmci.etl.build_warehouse
 
 data: download etl warehouse
+
+churn-base:
+	uv run python -m hmci.churn.snapshots
 
 bench:
 	uv run python -m hmci.etl.benchmark
