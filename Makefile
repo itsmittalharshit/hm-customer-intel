@@ -1,9 +1,12 @@
-.PHONY: setup test download etl warehouse data clean bench docs churn-base churn-features analyst
+.PHONY: setup test download etl warehouse data clean bench docs churn-base churn-features analyst ltv
 
 warehouse:
 	uv run python -m hmci.etl.build_warehouse
 
 data: download etl warehouse
+
+ltv:
+	uv run python -m hmci.analyst.ltv_funnel
 
 analyst:
 	uv run python -m hmci.analyst.explore

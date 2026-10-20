@@ -1,0 +1,5 @@
+step,customers,share_of_new,step_conversion
+1st purchase,292217,1.0,
+2nd purchase,180669,0.618,0.618
+3rd purchase,124830,0.427,0.691
+5+ purchases (loyal),64357,0.22,0.516

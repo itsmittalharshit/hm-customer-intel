@@ -35,3 +35,7 @@
 - Store-first customers retain ~33% better (m1 0.198 vs 0.147; m6 0.146 vs 0.110) -> test formally.
 - Omnichannel "advantage" is mostly frequency confounding: within frequency bands, online-only spends more.
 - Champions 22% of customers -> 58% revenue; Champions + Loyal 39% -> 77%.
+- Online-first: 12m LTV 0.313 vs 0.261 store-first (+20%) despite lower repeat (59.5% vs 67.1%). Bigger first basket; similar later spend. Retention != value.
+- Funnel (first year): 2nd purchase 61.8%, 2nd->3rd 69.1%, 3rd->5+ 51.6%. Biggest leak = 1st->2nd. Median 52 days to 2nd purchase.
+- Spring cohorts more valuable (12m LTV 0.343 Mar-19 vs 0.251 Jul-19).
+- Entry product group: repeat range 57–64%, weak effect.
