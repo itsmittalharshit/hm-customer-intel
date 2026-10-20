@@ -1,0 +1,23 @@
+project:
+  name: hmci
+  seed: 42
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  warehouse: data/warehouse.duckdb
+  reports: reports
+
+kaggle:
+  competition: h-and-m-personalized-fashion-recommendations
+  files:
+    - articles.csv
+    - customers.csv
+    - transactions_train.csv
+
+data:
+  start_date: "2018-09-20"
+  end_date: "2020-09-22"
+  dev_sample_frac: 0.10
+  dev_last_weeks: 26
