@@ -21,3 +21,6 @@ data:
   end_date: "2020-09-22"
   dev_sample_frac: 0.10
   dev_last_weeks: 26
+  churn_window_weeks: 18
+  active_lookback_weeks: 26
+  snapshot_step_weeks: 4

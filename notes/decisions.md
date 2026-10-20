@@ -1,2 +1,5 @@
 - Leading-zero finding: Article IDs are stored as 10-character strings and retain their leading zero across all 105,542 articles in the catalog.
 - Proposed churn window: 18 weeks (based on the 90th-percentile inter-purchase gap of 17.7 weeks, rounded to whole weeks).
+- Churn = no purchase in next 18 weeks (90th pct inter-purchase gap = 17.7 wk). Sensitivity check at 12 wk.
+- Active = ≥1 purchase in previous 26 weeks (95th pct gap = 26.7 wk).
+- Gaps are right-censored by the 2-year window, so percentiles are slightly optimistic.

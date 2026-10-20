@@ -1,4 +1,9 @@
-.PHONY: setup test download clean
+.PHONY: setup test download etl data clean
+
+etl:
+	uv run python -m hmci.etl.build_parquet
+
+data: download etl
 
 setup:
 	uv sync
