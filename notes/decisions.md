@@ -3,3 +3,6 @@
 - Churn = no purchase in next 18 weeks (90th pct inter-purchase gap = 17.7 wk). Sensitivity check at 12 wk.
 - Active = ≥1 purchase in previous 26 weeks (95th pct gap = 26.7 wk).
 - Gaps are right-censored by the 2-year window, so percentiles are slightly optimistic.
+- Cohorts before 2019-03 are left-censored (data starts 2018-09-20): Module 7 uses cohorts from 2019-03.
+- First and last weeks are partial: forecasting uses only weeks with 7 observed days.
+- April 2020 cohort spike (40.7k vs ~30k): hypothesis = lockdown shift to online; test with first_channel.

@@ -1,9 +1,12 @@
-.PHONY: setup test download etl data clean
+.PHONY: setup test download etl warehouse data clean
+
+warehouse:
+	uv run python -m hmci.etl.build_warehouse
+
+data: download etl warehouse
 
 etl:
 	uv run python -m hmci.etl.build_parquet
-
-data: download etl
 
 setup:
 	uv sync
