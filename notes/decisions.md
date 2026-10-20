@@ -24,3 +24,6 @@
 - Prob-ranking saves more customers but loses value: optimise value, not customer count.
 - Break-even churn prob for an average customer: 0.361. EV policy is self-limiting: positive across all 16 assumption cells.
 - Caveat: calibrator and policy both evaluated on val -> optimistic; confirm on test.
+- SHAP vs gain: freq 48%->28%, tenure 7%->14%, recency 3%->8%. Gain importance misled; report SHAP.
+- PRE-CREATE club status: +0.95 mean log-odds (~2x churn odds), ~4% of customers -> memo recommendation.
+- Age is predictive (3.5% SHAP): flag fairness audit of offer rates by age band before any deployment.
