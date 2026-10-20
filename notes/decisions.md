@@ -17,3 +17,10 @@
 - LightGBM val PR-AUC 0.7288 vs LogReg 0.7183 (+0.0105); grid spread only 0.0003 -> features are the ceiling, not hyperparameters.
 - Chosen: leaves=127, min_child_samples=500 (best and fastest).
 - Gain importance understates recency (shares credit with correlated gap/frequency features) -> use SHAP for explanations.
+- LGBM > LogReg on val: +0.0105 PR-AUC, 95% CI [0.0098, 0.0112], 200/200 resamples. Significant but modest.
+- Uncalibrated mean pred 0.37 vs observed 0.454: Dec-26 snapshot features look healthy (Christmas buying) while lockdown raised churn.
+- Isotonic calibration on val: ECE 0.087 -> 0.003, log-loss 0.585 -> 0.562.
+- Targeting (val, s=20%, c=5% mean spend): EV>0 policy targets 20.4%, net +1,662; same k by churn prob -661; top-10% -378; everyone -3,049.
+- Prob-ranking saves more customers but loses value: optimise value, not customer count.
+- Break-even churn prob for an average customer: 0.361. EV policy is self-limiting: positive across all 16 assumption cells.
+- Caveat: calibrator and policy both evaluated on val -> optimistic; confirm on test.

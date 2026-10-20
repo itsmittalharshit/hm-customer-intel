@@ -24,3 +24,9 @@ data:
   churn_window_weeks: 18
   active_lookback_weeks: 26
   snapshot_step_weeks: 4
+
+churn_business:
+  save_rate: 0.20          # assumed share of would-be churners an offer retains
+  offer_cost_share: 0.05   # offer cost as a share of mean 26-week customer spend
+  save_rate_grid: [0.05, 0.10, 0.20, 0.30]
+  offer_cost_grid: [0.02, 0.05, 0.10, 0.20]
