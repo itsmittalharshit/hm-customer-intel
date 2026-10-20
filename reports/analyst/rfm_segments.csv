@@ -1,0 +1,7 @@
+segment,customers,avg_recency,avg_frequency,share_customers,share_revenue
+Champions,220441,23.5,10.93,0.222,0.577
+Loyal,162510,95.4,5.92,0.164,0.195
+Hibernating,316473,233.4,1.26,0.319,0.094
+Needs attention,157274,72.2,2.11,0.158,0.075
+New / promising,98392,29.5,1.44,0.099,0.032
+At risk,37442,195.2,3.0,0.038,0.027

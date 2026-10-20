@@ -30,3 +30,8 @@
 - TEST (2020-05-14, scored once): LGBM PR-AUC 0.714, lift@10% 2.05; +0.0134 over LogReg, 95% CI [0.0126, 0.0141].
 - Val-fitted isotonic over-predicts on test (0.481 vs 0.411; ECE 0.070 vs raw 0.019): recalibrate on latest labelled data in production.
 - EV policy realised +1,187 vs expected +1,790 (34% overestimate from calibration drift); still beats all alternatives.
+- Channel 2 = online, CONFIRMED: 100% of Apr-2020 new customers were channel 2 (stores closed).
+- Apr-2020 lockdown cohort: 40.7k online acquisitions, lower month-3 retention (0.102 vs 0.141 for Mar-2020).
+- Store-first customers retain ~33% better (m1 0.198 vs 0.147; m6 0.146 vs 0.110) -> test formally.
+- Omnichannel "advantage" is mostly frequency confounding: within frequency bands, online-only spends more.
+- Champions 22% of customers -> 58% revenue; Champions + Loyal 39% -> 77%.

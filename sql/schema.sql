@@ -25,8 +25,8 @@ SELECT * FROM read_parquet('{processed}/articles.parquet');
 
 CREATE OR REPLACE TABLE dim_channel AS
 SELECT * FROM (VALUES
-    (1::TINYINT, 'channel 1 (likely store)'),
-    (2::TINYINT, 'channel 2 (likely online)')
+    (1::TINYINT, 'store'),
+    (2::TINYINT, 'online')
 ) AS t(channel_key, channel_name);
 
 CREATE OR REPLACE TABLE dim_date AS
